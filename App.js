@@ -3,12 +3,21 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import AddItem from './components/addItem';
 import Index from './screens';
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import Fonts from './constants/fonts'
 
 
 
 export default function App() {
   const [ showComponent, setShowComponent] = useState(false);
   let content;
+
+  // Loading Fonts
+  const [loaded] = useFonts(Fonts)
+  if (!loaded) return <AppLoading/>
+
+
   
   const handleShowComponent = () =>{
     if(showComponent == false){
@@ -19,7 +28,7 @@ export default function App() {
   }
 
   if(showComponent == false){
-    content = <Index changeShow={handleShowComponent}/>
+    content = <Index changeShow={handleShowComponent} />
   }else{
     content = <AddItem changeShow={handleShowComponent}/>
   }

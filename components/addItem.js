@@ -72,9 +72,9 @@ const styles = StyleSheet.create({
   },
   listHeading:{
     fontSize: 25,
-    fontWeight: 'bold',
     paddingLeft: 30,
-    marginTop: 10
+    marginTop: 10,
+    fontFamily: 'poppins-bold'
   },
   buttonContainer:{
     width: 90,

@@ -2,6 +2,7 @@ import { StyleSheet, View, Text, Button} from 'react-native';
 
 
 
+
 const Index = (props) => {
 const {changeShow} = props
 
@@ -10,7 +11,7 @@ const {changeShow} = props
     <View style={styles.layout}>
             <View style={styles.textLayout}>
                 <Text style={styles.title} >Bienvenidos a Mis Listas</Text>
-                <Text style={{textAlign:'center'}}>Te invitamos a armar tu lista de compra, de una forma rápida.</Text>
+                <Text style={{textAlign:'center', fontFamily: 'poppins-regular', fontSize: 18}}>Te invitamos a armar tu lista de compra de una forma rápida.</Text>
             </View>
             <View style={styles.buttonBox}>
                 <Button style={styles.button} onPress={changeShow} title='Ir'></Button>
@@ -26,15 +27,17 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: 20
+        padding: 25
     },
     textLayout: {
         textAlign:'center',
-        padding: 10,
-        alignItems: 'center'
+        padding: 15,
+        alignItems: 'center',
+        
     },
     title:{
-        fontSize: 20,
+        fontSize: 25,
+        fontFamily: 'poppins-bold'
     },
     buttonBox: {
         width:60,
