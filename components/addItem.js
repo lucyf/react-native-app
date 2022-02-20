@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
 import List from './List/index';
 
-const AddItem = () => {
+const AddItem = (props) => {
+  const {changeShow} = props
   const [textItem, setTextItem] = useState('');
   const [itemsList, setItemsList] = useState([]);
 
@@ -19,30 +20,40 @@ const AddItem = () => {
   }
 
   return (
-    <View >
-      <View style={styles.inputContainer}>
-        <TextInput 
-        style={styles.input} 
-        onChangeText={handleChangeText}
-        value={textItem}
-        placeholder="Ingresa un artículo"
-        />
-        <TouchableOpacity style={styles.button} onPress={handleAdd}>
-          <Text style={{color:'#fff'}}>Agregar</Text>
-          </TouchableOpacity>
+    <View style={styles.layout} >
+        <View >
+          <View style={styles.inputContainer}>
+            <TextInput 
+            style={styles.input} 
+            onChangeText={handleChangeText}
+            value={textItem}
+            placeholder="Ingresa un artículo"
+            />
+            <TouchableOpacity style={styles.buttonAgregar} onPress={handleAdd}>
+              <Text style={{color:'#fff'}}>Agregar</Text>
+              </TouchableOpacity>
+          </View>
+          <View style={styles.list}>
+            <Text style={styles.listHeading}>Lista de Compras</Text>
+            <List itemsList={itemsList} setItemsList={setItemsList}/>
+          </View>
         </View>
-      <View style={styles.list}>
-       <Text style={styles.listHeading}>Lista de Compras</Text>
-       <List itemsList={itemsList} setItemsList={setItemsList}/>
-      </View>
+        <View style={styles.buttonContainer}>
+          <Button style={styles.buttonBack} onPress={changeShow} title="Back"></Button>
+        </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  layout:{
+    alignContent: 'center',
+ },
   inputContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 50,
+    padding: 20
   },
   text: {
     fontSize: 20,
@@ -54,7 +65,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 5
   },
-  button:{
+  buttonAgregar:{
     backgroundColor: '#000',
     fontSize: 20,
     padding: 10,
@@ -62,8 +73,26 @@ const styles = StyleSheet.create({
   listHeading:{
     fontSize: 25,
     fontWeight: 'bold',
-    paddingLeft: 10,
+    paddingLeft: 30,
     marginTop: 10
+  },
+  buttonContainer:{
+    width: 90,
+    alignContent: 'center',
+    textAlign: 'center',
+    alignItems: 'center',
+    // marginLeft: 145,
+    position: 'absolute',
+    top: 700,
+    left: 300
+  },
+  buttonBack: {
+      alignContent: 'center',
+      textAlign: 'center',
+      alignItems: 'center',
+      
+
+
   }
 });
 
