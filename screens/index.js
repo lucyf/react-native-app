@@ -1,21 +1,16 @@
 import { StyleSheet, View, Text, Button} from 'react-native';
 
 
-
-
-const Index = (props) => {
-const {changeShow} = props
-
+const Index = () => {
+    
 
   return (
     <View style={styles.layout}>
             <View style={styles.textLayout}>
-                <Text style={styles.title} >Bienvenidos a Mis Listas</Text>
-                <Text style={{textAlign:'center', fontFamily: 'poppins-regular', fontSize: 18}}>Te invitamos a armar tu lista de compra de una forma rápida.</Text>
+                <Text style={styles.title} >¡Bienvenido!</Text>
+                <Text style={{textAlign:'center', fontFamily: 'poppins-regular', fontSize: 18}}>Organiza tus comidas semanales de la forma mas sencilla.</Text>
             </View>
-            <View style={styles.buttonBox}>
-                <Button style={styles.button} onPress={changeShow} title='Ir'></Button>
-            </View>
+
     </View>
   );
 }
@@ -39,14 +34,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontFamily: 'poppins-bold'
     },
-    buttonBox: {
-        width:60,
-        justifyContent: 'space-between',
-        padding: 10
-    },
-    button: {
-        textAlign: 'center',
-    }
+
 });
 
 export default Index;
