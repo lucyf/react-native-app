@@ -6,10 +6,11 @@ import { Ionicons } from "@expo/vector-icons";
 import Index from '../screens';
 import SearchRecipes from '../screens/searchRecipes';
 import WeekCalendar from '../screens/week';
+import RecipesStackNavigation from './recipesStack';
 
 const Tab = createBottomTabNavigator();
 
-const AppNavigation = () => {
+const TabNavigation = () => {
 
   return (
 <NavigationContainer>
@@ -28,9 +29,22 @@ const AppNavigation = () => {
             name="Recipes" 
             component={SearchRecipes}
             options={{
-              title: "Recetas",
+              title: "Buscar",
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="ios-search" size={size} color={color} />
+              )
+            }}>
+              
+              </Tab.Screen>
+             <Tab.Screen 
+            name="Recetas" 
+            component={RecipesStackNavigation}
+            options={{
+              title: "Mis Recetas",
+              headerShown: false,
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="book" size={size} color={color} 
+                />
               )
             }}
              />
@@ -51,4 +65,4 @@ const AppNavigation = () => {
 }
 
 
-export default AppNavigation;
+export default TabNavigation;
