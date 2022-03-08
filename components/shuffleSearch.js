@@ -1,17 +1,30 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity  } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity  } from 'react-native';
 // import List from './List/index';
 import recipes from '../database/recipes.data'
 
 const ShuffleSearch = (props) => {
-const [shuffleList, setShuffleList] = useState(recipes)
+
 const [oneRecipe, setOneRecipe]= useState([])
 const [show, setShow]= useState(false)
+const [addRecipe, setAddRecipe]= useState([])
 
 const handleShuffleSearch = () => {
-    let random = shuffleList[Math.floor(Math.random() * shuffleList.length)]
+    let random = recipes[Math.floor(Math.random() * recipes.length)]
     setOneRecipe(random)
     setShow(true)
+}
+
+const handleAddRecipe =()=>{
+    let isInRecipesBook = addRecipe.findIndex(item => item.id === oneRecipe.id)
+    if(isInRecipesBook === -1){
+        setAddRecipe([...addRecipe, oneRecipe])
+    }
+  
+}
+console.log(addRecipe)
+const handleViewDetail =()=>{
+    
 }
 
   return (
@@ -30,8 +43,12 @@ const handleShuffleSearch = () => {
           <View >
             <Text style={styles.suggestionTitle}>Sugerencias</Text>
             {show ? ( 
-                    <View >
+                    <View style={styles.suggestionRow}>
                         <Text style={styles.suggestionText}>{oneRecipe.name}</Text>
+                        <Button style={styles.suggestionButton} onPress={handleAddRecipe}
+                        title="Agregar"/>
+                        <Button style={styles.suggestionButton} onPress={handleViewDetail}
+                        title="Ver"/>
                     </View> 
                ) : null}
            
@@ -51,6 +68,9 @@ const styles = StyleSheet.create({
         width: 100,
        
     },
+    suggestionRow:{
+        flexDirection: 'row'
+    },
     suggestionTitle:{
         fontSize: 20,
         fontWeight: 'bold'
@@ -58,6 +78,9 @@ const styles = StyleSheet.create({
     suggestionText:{
         paddingTop:10,
         fontSize: 20
+    },
+    suggestionButton: {
+        marginRight: 5
     }
 });
 
