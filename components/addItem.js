@@ -4,7 +4,6 @@ import { clearErrors } from 'react-native/Libraries/LogBox/Data/LogBoxData';
 import List from './List/index';
 
 const AddItem = (props) => {
-  const {changeShow} = props
   const [textItem, setTextItem] = useState('');
   const [itemsList, setItemsList] = useState([]);
 
@@ -42,10 +41,8 @@ const AddItem = (props) => {
           <View style={styles.list}>
             <Text style={styles.listHeading}>Mis Ingredientes</Text>
             <List itemsList={itemsList} setItemsList={setItemsList}/>
+            
           </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button style={styles.buttonBack} onPress={changeShow} title="Back"></Button>
         </View>
     </View>
   );

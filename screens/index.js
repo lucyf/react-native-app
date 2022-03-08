@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text, Button} from 'react-native';
+import ShuffleSearch from '../components/shuffleSearch';
 
 
 const Index = () => {
@@ -10,7 +11,7 @@ const Index = () => {
                 <Text style={styles.title} >¡Bienvenido!</Text>
                 <Text style={{textAlign:'center', fontFamily: 'poppins-regular', fontSize: 18}}>Organiza tus comidas semanales de la forma mas sencilla.</Text>
             </View>
-
+            <ShuffleSearch />
     </View>
   );
 }
