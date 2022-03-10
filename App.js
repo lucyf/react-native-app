@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import Fonts from './constants/fonts';
 import TabNavigation from './navigation/tabNavigation';
+import { Provider } from 'react-redux';
+import store from './store';
 
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
   
 
   return (
-        <TabNavigation/>
+      <Provider store={store}><TabNavigation/></Provider>  
         
   );
 }

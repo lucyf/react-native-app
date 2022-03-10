@@ -1,18 +1,24 @@
+import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity  } from 'react-native';
-// import List from './List/index';
-import recipes from '../database/recipes.data'
+import { useSelector, useDispatch } from 'react-redux';
+import {randomRecipe} from '../store/actions/suggestion.action'
 
 const ShuffleSearch = (props) => {
 
 const [oneRecipe, setOneRecipe]= useState([])
 const [show, setShow]= useState(false)
 const [addRecipe, setAddRecipe]= useState([])
+const dispatch = useDispatch()
+const recipes = useSelector(state => state.suggestions.recipes)
+const recipeRandom = useSelector(state => state.suggestions.randomRecipe)
 
 const handleShuffleSearch = () => {
-    let random = recipes[Math.floor(Math.random() * recipes.length)]
-    setOneRecipe(random)
+    let random = Math.floor(Math.random() * recipes.length)
+    // setOneRecipe(random)
+    dispatch(randomRecipe(random))
     setShow(true)
+    console.log(random)
 }
 
 const handleAddRecipe =()=>{
@@ -22,7 +28,7 @@ const handleAddRecipe =()=>{
     }
   
 }
-console.log(addRecipe)
+
 const handleViewDetail =()=>{
     
 }
@@ -44,7 +50,7 @@ const handleViewDetail =()=>{
             <Text style={styles.suggestionTitle}>Sugerencias</Text>
             {show ? ( 
                     <View style={styles.suggestionRow}>
-                        <Text style={styles.suggestionText}>{oneRecipe.name}</Text>
+                        <Text style={styles.suggestionText}>{recipeRandom.name}</Text>
                         <Button style={styles.suggestionButton} onPress={handleAddRecipe}
                         title="Agregar"/>
                         <Button style={styles.suggestionButton} onPress={handleViewDetail}
