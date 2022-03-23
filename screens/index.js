@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Button} from 'react-native';
 import ShuffleSearch from '../components/shuffleSearch';
 
 
-const Index = () => {
+const Index = ({navigation}) => {
     
 
   return (
