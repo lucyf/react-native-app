@@ -1,13 +1,21 @@
 import { StyleSheet, View, Text, Button, FlatList} from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import RecipeItem from './recipeItem';
+import { loadRecipes } from '../../store/actions/newRecipe.action';
+
 
 
 
 const RecipeList = ({ navigation }) => {
+  const dispatch = useDispatch();
   const addedRecipes = useSelector(state =>state.recipes.recipes)
 
   
+  useEffect(() => {
+    dispatch(loadRecipes());
+}, []);
+
+
   const renderItem = (data) => (
     <RecipeItem
         title={data.item.title}

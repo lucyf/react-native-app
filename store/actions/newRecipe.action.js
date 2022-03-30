@@ -1,7 +1,9 @@
 import * as FileSystem from 'expo-file-system';
+import { insertRecipeBook } from '../../db';
 
 
 export const NEW_RECIPE = 'NEW_RECIPE';
+export const LOAD_RECIPE = 'LOAD_RECIPE';
 
 
 export const NewRecipe = (title, ingredients, image) =>{
@@ -15,10 +17,16 @@ export const NewRecipe = (title, ingredients, image) =>{
                 from: image,
                 to: Path,
             })
+
+            const result = await insertRecipeBook(
+                title,
+                ingredients,
+                Path
+            )
             
             dispatch({ 
                 type: 'NEW_RECIPE',
-                payload: { title, ingredients, image: Path}
+                payload: { id: result.insertId, title, ingredients, image: Path}
             })
 
         }catch(err){
@@ -29,4 +37,15 @@ export const NewRecipe = (title, ingredients, image) =>{
       
     }
    
+}
+
+export const loadRecipes = () => {
+    return async dispatch => {
+        try {
+            const result = await fetchAddresses();
+            dispatch({ type: LOAD_RECIPE, recipes: result.rows._array })
+        } catch (error) {
+            throw error;
+        }
+    }
 }

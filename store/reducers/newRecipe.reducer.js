@@ -1,4 +1,4 @@
-import { NEW_RECIPE } from "../actions/newRecipe.action";
+import { LOAD_RECIPE, NEW_RECIPE } from "../actions/newRecipe.action";
 
 //models
 
@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     switch(action.type) {
         case NEW_RECIPE:
             const newRecipe = new NewRecipeModel(
-                Date.now(),
+                action.payload.id.toString(),
                 action.payload.title,
                 action.payload.ingredients,
                 action.payload.image,
@@ -21,6 +21,17 @@ export default (state = initialState, action) => {
                 ...state,
                 recipes: state.recipes.concat(newRecipe),
             };
+
+            case LOAD_RECIPE:
+                return {
+                    ...state,
+                    recipes: action.recipes.map(item => new Place(
+                        item.id,
+                        item.title,
+                        item.ingredients,
+                        item.image
+                    ))
+                }
 
         default:
             return state;
