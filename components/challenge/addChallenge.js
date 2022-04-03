@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {NewRecipe} from '../../store/actions/newRecipe.action'
+import {NewChallenge} from '../../store/actions/newChallenge.action'
 
 import { View, Text, Button, TextInput, ScrollView, StyleSheet } from 'react-native';
 import ImageSelector from '../imageSelector';
 
 
-const AddRecipe = ({ navigation }) => {
+const AddChallenge = ({ navigation }) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState('')
-    const [ingredients, setIngredients] = useState('')
+    const [description, setdescription] = useState('')
     const [image, setImage] = useState();
 
     const handleTitleChange = text => setTitle(text);
-    const handleIngredientsChange = text =>setIngredients(text);
+    const handleDescriptionChange = text =>setdescription(text);
 
     const handleSave = () => {
-      dispatch(NewRecipe(title, ingredients, image ));
-      navigation.navigate('Mis Recetas');
+      dispatch(NewChallenge(title, description, image ));
+      navigation.navigate('My Challenges');
     }
 
     const handlePickImage = (uri) => {
@@ -28,26 +28,26 @@ const AddRecipe = ({ navigation }) => {
     return (
         <ScrollView>
             <View style={styles.container}>
-                <Text style={styles.label}>Titulo</Text>
+                <Text style={styles.label}>Challenge Title</Text>
                 <TextInput
                     style={styles.input}
                     value={title}
                     onChangeText={handleTitleChange}
                 />
 
-                <Text style={styles.label}>Ingredientes</Text>
+                <Text style={styles.label}>What did you do?</Text>
                 <TextInput
                     style={styles.input}
-                    value={ingredients}
-                    onChangeText={handleIngredientsChange}
+                    value={description}
+                    onChangeText={handleDescriptionChange}
                 />
-                <Text style={styles.label}>Foto</Text>
+                <Text style={styles.label}>Take a picture</Text>
                 <ImageSelector onImage={handlePickImage} />
 
             </View>
             <View style={styles.saveBtnContainer}>
                 <Button
-                    title="Guardar Receta"
+                    title="Save in Album"
                     color='#000'
                     onPress={handleSave}
                 />
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default AddRecipe;
+export default AddChallenge;

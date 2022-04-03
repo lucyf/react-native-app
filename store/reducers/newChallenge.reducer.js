@@ -1,34 +1,34 @@
-import { LOAD_RECIPE, NEW_RECIPE } from "../actions/newRecipe.action";
+import { LOAD_CHALLENGE, NEW_CHALLENGE } from "../actions/newChallenge.action";
 
 //models
 
-import NewRecipeModel from "../../model/newRecipe.model";
+import NewChallengeModel from "../../model/newChallenge.model";
 
 const initialState ={
-    recipes: []
+    myChallenges: []
 }
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case NEW_RECIPE:
-            const newRecipe = new NewRecipeModel(
+        case NEW_CHALLENGE:
+            const newChallenge = new NewChallengeModel(
                 action.payload.id.toString(),
                 action.payload.title,
-                action.payload.ingredients,
+                action.payload.description,
                 action.payload.image,
             );
             return {
                 ...state,
-                recipes: state.recipes.concat(newRecipe),
+                myChallenges: state.myChallenges.concat(newChallenge),
             };
 
-            case LOAD_RECIPE:
+            case LOAD_CHALLENGE:
                 return {
                     ...state,
-                    recipes: action.recipes.map(item => new Place(
+                    myChallenges: action.myChallenges.map(item => new NewChallengeModel(
                         item.id,
                         item.title,
-                        item.ingredients,
+                        item.description,
                         item.image
                     ))
                 }

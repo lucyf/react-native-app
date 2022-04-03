@@ -1,83 +1,87 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity  } from 'react-native';
+import Colors from '../constants/colors'
 import { useSelector, useDispatch } from 'react-redux';
-import {randomRecipe} from '../store/actions/suggestion.action'
+import { randomChallenge, addChallenge} from '../store/actions/suggestion.action';
 
-const ShuffleSearch = (props) => {
+const ShuffleSearch = ({ navigation: navigate }) => {
 
-const [oneRecipe, setOneRecipe]= useState([])
+
 const [show, setShow]= useState(false)
-const [addRecipe, setAddRecipe]= useState([])
 const dispatch = useDispatch()
-const recipes = useSelector(state => state.suggestions.recipes)
-const recipeRandom = useSelector(state => state.suggestions.randomRecipe)
+const challenge = useSelector(state => state.suggestions.challenge)
 
-const handleShuffleSearch = () => {
-    let random = Math.floor(Math.random() * recipes.length)
-    // setOneRecipe(random)
-    dispatch(randomRecipe(random))
+const handleShuffleSearch =  () => {
+    dispatch(randomChallenge())
     setShow(true)
-    console.log(random)
+
 }
 
-const handleAddRecipe =()=>{
-    let isInRecipesBook = addRecipe.findIndex(item => item.id === oneRecipe.id)
-    if(isInRecipesBook === -1){
-        setAddRecipe([...addRecipe, oneRecipe])
-    }
-  
+const handleAddRecipe =(key)=>{
+    dispatch(addChallenge(key))
+ 
 }
 
-const handleViewDetail =()=>{
-    
-}
+
 
   return (
-    <View >
-        <View>
-          <Text style={styles.instruction}>
-            Apreta el botón y te sugeriremos recetas únicas.
-          </Text>
-        </View>
-         <View >
+    <View style={styles.layout} >
           <View >
             <TouchableOpacity style={styles.buttonShuffle} onPress={handleShuffleSearch}>
-                <Text style={{color:'#fff',fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Shuffle</Text>
+                <Text style={styles.buttonText}>Let's Begin</Text>
             </TouchableOpacity>
           </View>
           <View >
-            <Text style={styles.suggestionTitle}>Sugerencias</Text>
+   
             {show ? ( 
-                    <View style={styles.suggestionRow}>
-                        <Text style={styles.suggestionText}>{recipeRandom.name}</Text>
-                        <Button style={styles.suggestionButton} onPress={handleAddRecipe}
-                        title="Agregar"/>
-                        <Button style={styles.suggestionButton} onPress={handleViewDetail}
-                        title="Ver"/>
+                    <View style={styles.layout}>
+                            <Text style={styles.suggestionTitle}>Your Challenge is: </Text>
+                        <View style={styles.suggestionLayout}>
+                            <Text style={styles.suggestionText}>{ challenge === null ? '' :
+                            challenge.activity}</Text>
+                            <View style={styles.centerLayout}>
+                            <TouchableOpacity style={styles.suggestionButton} onPress={handleAddRecipe}>
+                                <Text style={styles.buttonText}>Accept Challenge</Text>
+                            </TouchableOpacity>
+                            </View > 
+                        </View> 
                     </View> 
                ) : null}
            
             
            </View>
-        </View> 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+    layout: {
+        display: 'flex',
+        alignItems: 'center'
+    },
     buttonShuffle:{
         marginTop:10,
         marginBottom: 10,
-        backgroundColor: 'blue',
+        backgroundColor: Colors.flame,
         padding: 10,
-        width: 100,
+        width: 150,
+        borderRadius: 20,
        
     },
-    suggestionRow:{
-        flexDirection: 'row'
+    buttonText: {
+        color:'#fff',fontSize: 20, fontWeight: 'bold', textAlign: 'center' 
+    },
+    suggestionLayout:{
+        borderColor: Colors.violetcCrayola, borderWidth: 3, paddingHorizontal: 50, paddingVertical: 30, marginTop: 20, borderRadius: 10,
+    },
+    centerLayout: {
+        justifyContent: 'center',
+        display: 'flex',
+        paddingTop: 10,
     },
     suggestionTitle:{
+        marginTop: 10,
         fontSize: 20,
         fontWeight: 'bold'
     },
@@ -86,8 +90,13 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     suggestionButton: {
-        marginRight: 5
-    }
+        marginRight: 5,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 20,
+        backgroundColor: Colors.violetcCrayola
+    },
+
 });
 
 export default ShuffleSearch;

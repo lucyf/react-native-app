@@ -28,7 +28,7 @@ export default function App() {
   
 
   return (
-      <Provider store={store}><TabNavigation/></Provider>  
+      <Provider store={store}><TabNavigation /></Provider>  
         
   );
 }

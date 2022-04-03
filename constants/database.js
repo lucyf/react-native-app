@@ -1,0 +1,1 @@
+export const BORED_API = 'https://www.boredapi.com/api/activity'

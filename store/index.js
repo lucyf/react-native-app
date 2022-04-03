@@ -4,12 +4,12 @@ import thunk from 'redux-thunk';
 
 // reducers
 import SuggestionReducer from "./reducers/suggestions.reducer";
-import newRecipeReducer from "./reducers/newRecipe.reducer";
+import NewChallenges from "./reducers/newChallenge.reducer";
 
 
 const RootReducer = combineReducers({
     suggestions: SuggestionReducer,
-    recipes: newRecipeReducer,
+    myChallenges: NewChallenges,
 }) 
 
 

@@ -41,11 +41,11 @@ const ImageSelector = props => {
     <View style={styles.container}>
       <View style={styles.preview}>
         {!pickedUri
-          ? <Text>No hay imagen...</Text>
+          ? <Text>There's no image...</Text>
           : <Image style={styles.image} source={{ uri: pickedUri }} />}
       </View>
       <Button
-        title="Tomar Foto"
+        title="Take Picture"
         color={COLORS.salmon}
         onPress={handleTakeImage}
       />

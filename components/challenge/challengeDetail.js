@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text} from 'react-native';
 
 
-const RecipeDetail = () => {
+const ChallengeDetail = () => {
 
   return (
     <View >
@@ -14,4 +14,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default RecipeDetail;
+export default ChallengeDetail;

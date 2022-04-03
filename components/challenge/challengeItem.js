@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
 import COLORS  from '../../constants/colors';
 
-const RecipeItem = ({ title, image, ingredients, onSelect }) => {
+const ChallengeItem = ({ title, image, description, onSelect }) => {
   return (
     <TouchableOpacity
       onPress={onSelect}
@@ -11,7 +11,7 @@ const RecipeItem = ({ title, image, ingredients, onSelect }) => {
       <Image style={styles.image} source={{ uri: image }} />
       <View style={styles.info}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.ingredients}>{ingredients}</Text>
+        <Text style={styles.description}>{description}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RecipeItem;
+export default ChallengeItem;

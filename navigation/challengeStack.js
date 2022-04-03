@@ -4,26 +4,26 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TouchableOpacity } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 
-import AddRecipe from '../components/recipes/addRecipe';
-import RecipeList from '../components/recipes/recipeList';
-import RecipeDetail from '../components/recipes/recipeDetail';
+import AddChallenge from '../components/challenge/addChallenge'
+import ChallengeDetail from '../components/challenge/challengeDetail';
+import MyChallenges from '../screens/myChallenges';
 
 const Stack = createNativeStackNavigator();
 
 
-const RecipesStackNavigation = ({navigation}) => {
+const ChallengeStackNavigation = ({navigation}) => {
 
   return (
 
         <Stack.Navigator>
          
             <Stack.Screen 
-            name="Mis Recetas" 
-            component={RecipeList} 
+            name="Saved Challenges" 
+            component={MyChallenges} 
             options={{
-              title: 'Mis Recetas',
+              title: 'My Challenges',
               headerRight: ()=>(
-                <TouchableOpacity onPress={()=> navigation.navigate('Nueva Receta')}>
+                <TouchableOpacity onPress={()=> navigation.navigate('New Challenge')}>
                   <Ionicons
                    name='md-add'
                    color={Platform.OS === 'andoid' ? '#000' : '#000'}
@@ -35,12 +35,12 @@ const RecipesStackNavigation = ({navigation}) => {
             }}
             />
             <Stack.Screen 
-            name="Detalle Receta" 
-            component={RecipeDetail}
+            name="Challenge Detail" 
+            component={ChallengeDetail}
             />
              <Stack.Screen 
-            name="Nueva Receta" 
-            component={AddRecipe} 
+            name="New Challenge" 
+            component={AddChallenge} 
             />
         </Stack.Navigator>
 
@@ -48,4 +48,4 @@ const RecipesStackNavigation = ({navigation}) => {
 }
 
 
-export default RecipesStackNavigation;
+export default ChallengeStackNavigation;

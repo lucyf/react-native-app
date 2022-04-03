@@ -4,9 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from "@expo/vector-icons";
 
 import Index from '../screens';
-import SearchRecipes from '../screens/searchRecipes';
-import WeekCalendar from '../screens/week';
-import RecipesStackNavigation from './recipesStack';
+import Categories from '../screens/categories';
+
+import ChallengeStackNavigation from './challengeStack';
+import Colors from '../constants/colors'
 
 const Tab = createBottomTabNavigator();
 
@@ -14,50 +15,42 @@ const TabNavigation = () => {
 
   return (
 <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator >
             <Tab.Screen 
             name="Home" 
             component={Index} 
             options={{
-              title: "Home",
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="ios-home" size={size} color={color} />
-              )
+              title: "Enjoy Challenge",
+              headerShown: false,
+              tabBarIcon: ({ size }) => (
+                <Ionicons name="ios-home" size={size} color={Colors.flame} />
+              ),
             }}
             />
             <Tab.Screen 
-            name="Recipes" 
-            component={SearchRecipes}
+            name="Categories" 
+            component={Categories}
             options={{
-              title: "Buscar",
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="ios-search" size={size} color={color} />
+              title: "Categories",
+              tabBarIcon: () => (
+                <Ionicons name="copy-outline" size={25} color={Colors.flame} />
               )
             }}>
               
               </Tab.Screen>
              <Tab.Screen 
-            name="Recetas" 
-            component={RecipesStackNavigation}
+            name="My Challenges" 
+            component={ChallengeStackNavigation}
             options={{
-              title: "Mis Recetas",
+              title: "My Chanllenges",
               headerShown: false,
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="book" size={size} color={color} 
+              tabBarIcon: ({ color = Colors.vermilion, size }) => (
+                <Ionicons name="book" size={size} color={Colors.flame} 
                 />
               )
             }}
              />
-            <Tab.Screen 
-            name="Calendar" 
-            component={WeekCalendar}
-            options={{
-              title: "Calendario",
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="ios-calendar" size={size} color={color} />
-              )
-            }}
-             />
+
         </Tab.Navigator>
 </NavigationContainer>
 

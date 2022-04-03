@@ -1,4 +1,5 @@
-import { StyleSheet, View, Text, Button} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+// import Colors from '../constants/colors'
 import ShuffleSearch from '../components/shuffleSearch';
 
 
@@ -8,10 +9,16 @@ const Index = ({navigation}) => {
   return (
     <View style={styles.layout}>
             <View style={styles.textLayout}>
-                <Text style={styles.title} >¡Bienvenido!</Text>
-                <Text style={{textAlign:'center', fontFamily: 'poppins-regular', fontSize: 18}}>Organiza tus comidas semanales de la forma mas sencilla.</Text>
+                <Text style={styles.title} >¡Welcome!</Text>
+                <Text style={styles.text}>Enjoy life challenge will give you a random activity when you run out of ideas. 
+                Accept the challenge and save in the album memmories you will cherish in the future.</Text>
             </View>
             <ShuffleSearch />
+            <View style={styles.categoriesLayout}>
+                <TouchableOpacity style={styles.categoriesLink} onPress={() => navigation.navigate('Categories')}>
+                    <Text style={styles.categoriesText}>View categories</Text>
+                </TouchableOpacity>
+            </View> 
     </View>
   );
 }
@@ -19,11 +26,10 @@ const Index = ({navigation}) => {
 const styles = StyleSheet.create({
     layout:{
         textAlign:'center',
-        marginTop: 150,
-        alignContent: 'center',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: 25
+        backgroundColor: '#fff',
+        flex: 1,
+        padding: 25,
+        paddingTop: 100, 
     },
     textLayout: {
         textAlign:'center',
@@ -35,7 +41,15 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontFamily: 'poppins-bold'
     },
+    text: {
+        textAlign:'center', fontFamily: 'poppins-regular', fontSize: 18
+    },
+    categoriesLayout: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingTop: 10
 
+    },
 });
 
 export default Index;

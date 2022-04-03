@@ -1,11 +1,12 @@
 import { StyleSheet, View, Text} from 'react-native';
+import AddItem from '../components/addItem';
 
 
-const WeekCalendar = () => {
+const SearchCategories = () => {
 
   return (
     <View >
-        <Text>Week Calendar</Text>
+       <AddItem></AddItem>
     </View>
   );
 }
@@ -14,4 +15,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default WeekCalendar;
+export default SearchCategories;

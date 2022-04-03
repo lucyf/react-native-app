@@ -1,12 +1,12 @@
 import * as FileSystem from 'expo-file-system';
-import { insertRecipeBook } from '../../db';
+import { insertChanllengeAlbum , fetchChanllengeAlbum } from '../../db';
 
 
-export const NEW_RECIPE = 'NEW_RECIPE';
-export const LOAD_RECIPE = 'LOAD_RECIPE';
+export const NEW_CHALLENGE = 'NEW_CHALLENGE';
+export const LOAD_CHALLENGE = 'LOAD_CHALLENGE';
 
 
-export const NewRecipe = (title, ingredients, image) =>{
+export const NewChallenge = (title, description, image) =>{
     return async dispatch =>{
         
         const filename= image.split('/').pop();
@@ -18,15 +18,15 @@ export const NewRecipe = (title, ingredients, image) =>{
                 to: Path,
             })
 
-            const result = await insertRecipeBook(
+            const result = await insertChanllengeAlbum(
                 title,
-                ingredients,
+                description,
                 Path
             )
             
             dispatch({ 
-                type: 'NEW_RECIPE',
-                payload: { id: result.insertId, title, ingredients, image: Path}
+                type: 'NEW_CHALLENGE',
+                payload: { id: result.insertId, title, description, image: Path}
             })
 
         }catch(err){
@@ -39,11 +39,11 @@ export const NewRecipe = (title, ingredients, image) =>{
    
 }
 
-export const loadRecipes = () => {
+export const loadChallenge = () => {
     return async dispatch => {
         try {
-            const result = await fetchAddresses();
-            dispatch({ type: LOAD_RECIPE, recipes: result.rows._array })
+            const result = await fetchChanllengeAlbum();
+            dispatch({ type: LOAD_CHALLENGE, myChallenges: result.rows._array })
         } catch (error) {
             throw error;
         }
