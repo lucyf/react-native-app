@@ -6,17 +6,18 @@ export const MY_CHALLENGES = 'MY_CHALLENGES'
 export const RANDOM_CHALLENGE = 'RANDOM_CHALLENGE';
 
 export const selectChallenge = (key) =>({
-    type: 'SELECT_CHALLENGE_ID',
+    type: SELECT_CHALLENGE_ID,
     challengeId: key
 
 })
 
 
-export const randomChallenge =  () => {
+export const randomChallenge =  (type) => {
+   const activity = type !== undefined ? type  : ''
     return function (dispatch) { 
-        axios.get(BORED_API)
+      console.log(BORED_API + activity)
+        axios.get(BORED_API + activity)
           .then((response) => {
-            console.log(response.data)
               dispatch({
             type: RANDOM_CHALLENGE,
             payload: response.data

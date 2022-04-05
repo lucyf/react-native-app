@@ -4,6 +4,7 @@ import ShuffleSearch from '../components/shuffleSearch';
 
 
 const Index = ({navigation}) => {
+
     
 
   return (

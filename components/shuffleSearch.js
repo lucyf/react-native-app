@@ -3,45 +3,46 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity  } from 'react-native';
 import Colors from '../constants/colors'
 import { useSelector, useDispatch } from 'react-redux';
-import { randomChallenge, addChallenge} from '../store/actions/suggestion.action';
+import { randomChallenge, selectedChallengeId} from '../store/actions/suggestion.action';
 
-const ShuffleSearch = ({ navigation: navigate }) => {
+const ShuffleSearch = ({ type : type }) => {
 
 
 const [show, setShow]= useState(false)
 const dispatch = useDispatch()
 const challenge = useSelector(state => state.suggestions.challenge)
+const selected = useSelector(state => state.suggestions.selectedChallengeId)
 
 const handleShuffleSearch =  () => {
-    dispatch(randomChallenge())
+    dispatch(randomChallenge(type))
     setShow(true)
 
 }
 
-const handleAddRecipe =(key)=>{
-    dispatch(addChallenge(key))
- 
-}
+const handleAddChallenge =(key)=>{
+    dispatch(selectChallenge(key))
 
+}
 
 
   return (
     <View style={styles.layout} >
           <View >
             <TouchableOpacity style={styles.buttonShuffle} onPress={handleShuffleSearch}>
-                <Text style={styles.buttonText}>Let's Begin</Text>
+                {!show && type !== '' ?  <Text style={styles.buttonText}>Let's Begin</Text> :  <Text style={styles.buttonText}>Try Again</Text> }
+               
             </TouchableOpacity>
           </View>
           <View >
    
-            {show ? ( 
+            {show && type !== ''  ? ( 
                     <View style={styles.layout}>
                             <Text style={styles.suggestionTitle}>Your Challenge is: </Text>
                         <View style={styles.suggestionLayout}>
                             <Text style={styles.suggestionText}>{ challenge === null ? '' :
                             challenge.activity}</Text>
                             <View style={styles.centerLayout}>
-                            <TouchableOpacity style={styles.suggestionButton} onPress={handleAddRecipe}>
+                            <TouchableOpacity style={styles.suggestionButton} onPress={()=>{handleAddChallenge(challenge.key)}}>
                                 <Text style={styles.buttonText}>Accept Challenge</Text>
                             </TouchableOpacity>
                             </View > 
