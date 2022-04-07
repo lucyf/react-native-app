@@ -1,11 +1,15 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
 import COLORS  from '../../constants/colors';
+import {useNavigation} from '@react-navigation/native';
 
-const ChallengeItem = ({ title, image, description, onSelect }) => {
+const ChallengeItem = ({ title, image, description}) => {
+
+ const navigation = useNavigation()
+
   return (
     <TouchableOpacity
-      onPress={onSelect}
+      onPress={()=>{navigation.navigate('Challenge Detail')}}
       style={styles.RecipeItem}
     >
       <Image style={styles.image} source={{ uri: image }} />

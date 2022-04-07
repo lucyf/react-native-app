@@ -3,27 +3,28 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity  } from 'react-native';
 import Colors from '../constants/colors'
 import { useSelector, useDispatch } from 'react-redux';
-import { randomChallenge, selectedChallengeId} from '../store/actions/suggestion.action';
+import { randomChallenge, selectedChallengeId, selectChallenge} from '../store/actions/suggestion.action';
+import ModalAcceptedChallenge from './modalAccepted';
 
-const ShuffleSearch = ({ type : type }) => {
+const ShuffleSearch = (props) => {
+    const {type} = props
+    const [modalVisible, setModalVisible] = useState(false);
+    const [show, setShow]= useState(false)
+    const dispatch = useDispatch()
+    const challenge = useSelector(state => state.suggestions.challenge)
 
 
-const [show, setShow]= useState(false)
-const dispatch = useDispatch()
-const challenge = useSelector(state => state.suggestions.challenge)
-const selected = useSelector(state => state.suggestions.selectedChallengeId)
+    const handleShuffleSearch =  () => {
+        dispatch(randomChallenge(type))
+        setShow(true)
 
-const handleShuffleSearch =  () => {
-    dispatch(randomChallenge(type))
-    setShow(true)
+    }
 
-}
+    const handleAddChallenge =(key)=>{
+        dispatch(selectChallenge(key))
+        setModalVisible(!modalVisible)
 
-const handleAddChallenge =(key)=>{
-    dispatch(selectChallenge(key))
-
-}
-
+    }
 
   return (
     <View style={styles.layout} >
@@ -52,6 +53,8 @@ const handleAddChallenge =(key)=>{
            
             
            </View>
+           {modalVisible ? <ModalAcceptedChallenge modalVisible={modalVisible} setModalVisible={setModalVisible} /> : null}
+            
     </View>
   );
 }

@@ -2,7 +2,12 @@ import {SELECT_CHALLENGE_ID,  RANDOM_CHALLENGE, MY_CHALLENGES } from '../actions
 
 const initialState = {
     challenge: null,
-    selectedChallengeId: null,
+    selectedChallenge: {
+        id: null,
+        activity: null,
+        participants: null,
+        category: null,
+    },
 
 }
 
@@ -18,7 +23,7 @@ const SuggestionReducer = (state = initialState, action)=>{
         case SELECT_CHALLENGE_ID:
             return {
                 ...state,
-                selectedChallengeId: action.challengeId,
+                selectedChallenge: action.payload,
             }
 
 

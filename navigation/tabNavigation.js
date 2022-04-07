@@ -22,6 +22,7 @@ const TabNavigation = () => {
             options={{
               title: "Enjoy Challenge",
               headerShown: false,
+              unmountOnBlur: true,
               tabBarIcon: ({ size }) => (
                 <Ionicons name="ios-home" size={size} color={Colors.flame} />
               ),

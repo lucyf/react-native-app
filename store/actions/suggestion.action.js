@@ -5,11 +5,27 @@ export const SELECT_CHALLENGE_ID = 'SELECT_CHALLENGE_ID';
 export const MY_CHALLENGES = 'MY_CHALLENGES'
 export const RANDOM_CHALLENGE = 'RANDOM_CHALLENGE';
 
-export const selectChallenge = (key) =>({
-    type: SELECT_CHALLENGE_ID,
-    challengeId: key
 
-})
+export const selectChallenge = (key) => {
+  return function (dispatch) { 
+      axios.get(BORED_API + '?key=' + key)
+        .then((response) => {
+            dispatch({
+              type: SELECT_CHALLENGE_ID,
+              payload: {
+                id: response.data.key,
+                activity: response.data.activity,
+                participants: response.data.participants,
+                category: response.data.type,
+              }
+        })})
+        .catch((err) => {
+          console.log(err)
+          throw err
+        })
+    }
+
+}
 
 
 export const randomChallenge =  (type) => {
@@ -28,4 +44,4 @@ export const randomChallenge =  (type) => {
           })
       }
 }
-    
+

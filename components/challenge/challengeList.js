@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { StyleSheet, View, Text, Button, FlatList} from 'react-native';
+import { StyleSheet, View, FlatList} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import ChallengeItem from './challengeItem';
 import { loadChallenge } from '../../store/actions/newChallenge.action';
@@ -17,12 +17,14 @@ const ChallengeList = ({ navigation }) => {
 }, [addedChallenges]);
 
 
+
+
   const renderItem = (data) => (
     <ChallengeItem
         title={data.item.title}
         image={data.item.image}
         description={data.item.description}
-        onSelect={() => navigation.navigate('Challenge Detail')}
+
     />
   )
 

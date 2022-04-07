@@ -1,11 +1,18 @@
+import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 // import Colors from '../constants/colors'
 import ShuffleSearch from '../components/shuffleSearch';
 
 
+
 const Index = ({navigation}) => {
 
-    
+// const newChallengeView = ()=>{
+//     navigation.navigate('My Challenges', {
+//         screen:'My Challenges',
+//         params: { screen:'New Challenge'} 
+//        })
+// }
 
   return (
     <View style={styles.layout}>

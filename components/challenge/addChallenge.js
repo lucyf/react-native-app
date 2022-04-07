@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {NewChallenge} from '../../store/actions/newChallenge.action'
 
 import { View, Text, Button, TextInput, ScrollView, StyleSheet } from 'react-native';
@@ -8,9 +8,11 @@ import ImageSelector from '../imageSelector';
 
 const AddChallenge = ({ navigation }) => {
     const dispatch = useDispatch();
-    const [title, setTitle] = useState('')
-    const [description, setdescription] = useState('')
+    const [title, setTitle] = useState(conditionTitle)
+    const [description, setdescription] = useState()
     const [image, setImage] = useState();
+    const challege = useSelector(state => state.suggestions.selectedChallenge)
+    let conditionTitle = challege.activity === undefined ? challege.activity : ''
 
     const handleTitleChange = text => setTitle(text);
     const handleDescriptionChange = text =>setdescription(text);
@@ -23,15 +25,15 @@ const AddChallenge = ({ navigation }) => {
     const handlePickImage = (uri) => {
         setImage(uri);
     }
-
-
+    
+console.log(challege.activity)
     return (
         <ScrollView>
             <View style={styles.container}>
                 <Text style={styles.label}>Challenge Title</Text>
                 <TextInput
                     style={styles.input}
-                    value={title}
+                    defaultValue={title}
                     onChangeText={handleTitleChange}
                 />
 
@@ -40,6 +42,7 @@ const AddChallenge = ({ navigation }) => {
                     style={styles.input}
                     value={description}
                     onChangeText={handleDescriptionChange}
+                    multiline={true}
                 />
                 <Text style={styles.label}>Take a picture</Text>
                 <ImageSelector onImage={handlePickImage} />
