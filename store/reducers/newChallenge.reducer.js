@@ -1,11 +1,13 @@
-import { LOAD_CHALLENGE, NEW_CHALLENGE } from "../actions/newChallenge.action";
+import { LOAD_CHALLENGE, NEW_CHALLENGE, SELECT_ITEM_ID} from "../actions/newChallenge.action";
 
 //models
 
 import NewChallengeModel from "../../model/newChallenge.model";
 
 const initialState ={
-    myChallenges: []
+    myChallenges: [],
+    selectedItemId: null,
+
 }
 
 export default (state = initialState, action) => {
@@ -32,6 +34,12 @@ export default (state = initialState, action) => {
                         item.image
                     ))
                 }
+            case SELECT_ITEM_ID : 
+                return {
+                    ...state,
+                    selectedItemId: state.myChallenges.filter(item => item.id === action.challlengeId)
+                }
+        
 
         default:
             return state;

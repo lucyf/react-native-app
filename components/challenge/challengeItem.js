@@ -2,14 +2,22 @@ import React from 'react';
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
 import COLORS  from '../../constants/colors';
 import {useNavigation} from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { selectItemId } from '../../store/actions/newChallenge.action';
 
-const ChallengeItem = ({ title, image, description}) => {
-
+const ChallengeItem = ({ title, image, description, dataId}) => {
+ const dispatch = useDispatch()
  const navigation = useNavigation()
+ 
+
+ const handleSelect = () => {
+  dispatch(selectItemId(dataId))
+  navigation.navigate('Challenge Detail')
+ }
 
   return (
     <TouchableOpacity
-      onPress={()=>{navigation.navigate('Challenge Detail')}}
+      onPress={()=>{handleSelect()}}
       style={styles.RecipeItem}
     >
       <Image style={styles.image} source={{ uri: image }} />

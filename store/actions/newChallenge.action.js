@@ -4,6 +4,7 @@ import { insertChanllengeAlbum , fetchChanllengeAlbum } from '../../db';
 
 export const NEW_CHALLENGE = 'NEW_CHALLENGE';
 export const LOAD_CHALLENGE = 'LOAD_CHALLENGE';
+export const SELECT_ITEM_ID = 'SELECT_ITEM_ID';
 
 
 export const NewChallenge = (title, description, image) =>{
@@ -49,3 +50,9 @@ export const loadChallenge = () => {
         }
     }
 }
+
+
+export const selectItemId = (challlengeId) =>({
+    type: SELECT_ITEM_ID ,
+    challlengeId,
+  })
