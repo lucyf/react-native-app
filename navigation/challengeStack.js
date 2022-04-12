@@ -41,6 +41,9 @@ const ChallengeStackNavigation = ({navigation}) => {
              <Stack.Screen 
             name="New Challenge" 
             component={AddChallenge} 
+            options={{
+              headerShown: true
+            }}
             />
         </Stack.Navigator>
 

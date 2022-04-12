@@ -17,7 +17,8 @@ const Accordion = ({data}) => {
   return (
     <View>
         <TouchableOpacity style={styles.button}
-        onPress={handleOnPress}>
+        onPress={handleOnPress}
+        key={data.id}>
             <View style={styles.category}>
                 <Text style={styles.categoryText}>{data.item}</Text>
             </View>

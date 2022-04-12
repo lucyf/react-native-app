@@ -4,9 +4,10 @@ import {NewChallenge} from '../../store/actions/newChallenge.action'
 
 import { View, Text, Button, TextInput, ScrollView, StyleSheet } from 'react-native';
 import ImageSelector from '../imageSelector';
+import {useNavigation} from '@react-navigation/native';
 
 
-const AddChallenge = ({ navigation }) => {
+const AddChallenge = ({navigation}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState(conditionTitle)
     const [description, setdescription] = useState()
@@ -18,15 +19,17 @@ const AddChallenge = ({ navigation }) => {
     const handleDescriptionChange = text =>setdescription(text);
 
     const handleSave = () => {
-      dispatch(NewChallenge(title, description, image ));
-      navigation.navigate('My Challenges');
+       
+            dispatch(NewChallenge(title, description, image ));
+            navigation.navigate("Saved Challenges");
+            alert('Your challenge has been saved successfully!')
+            
     }
 
     const handlePickImage = (uri) => {
         setImage(uri);
     }
     
-console.log(challege.activity)
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -52,7 +55,7 @@ console.log(challege.activity)
                 <Button
                     title="Save in Album"
                     color='#000'
-                    onPress={handleSave}
+                    onPress={()=>{handleSave()}}
                 />
             </View>
         </ScrollView>
