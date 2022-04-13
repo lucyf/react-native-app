@@ -7,13 +7,6 @@ import ShuffleSearch from '../components/shuffleSearch';
 
 const Index = ({navigation}) => {
 
-// const newChallengeView = ()=>{
-//     navigation.navigate('My Challenges', {
-//         screen:'My Challenges',
-//         params: { screen:'New Challenge'} 
-//        })
-// }
-
   return (
     <View style={styles.layout}>
             <View style={styles.textLayout}>

@@ -25,6 +25,7 @@ const ChallengeList = ({ navigation }) => {
         image={data.item.image}
         description={data.item.description}
         dataId={data.item.id}
+        key={data.item.id}
 
     />
   )
